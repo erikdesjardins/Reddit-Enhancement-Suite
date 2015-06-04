@@ -518,14 +518,6 @@ p.moduleListing {
 	clear: both;
 	width: auto;
 }
-.moduleToggle, .toggleButton {
-	float: left;
-	width: 60px;
-	height: 20px;
-	cursor: pointer;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-}
 .moduleHeader {
 	border: 1px solid #c7c7c7;
 	border-radius: 2px 2px 2px 2px;
@@ -545,74 +537,91 @@ p.moduleListing {
 #RESConsoleContainer .toggleButton {
 	margin-left: 10px;
 }
-.toggleButton input[type=checkbox] {
+label {
+	position: relative;
+}
+input[type="checkbox"].toggleButton {
 	display: none;
 }
-.moduleToggle span, .toggleButton span {
-	margin-top: -3px;
-	font-size: 11px;
-	padding-top: 3px;
-	width: 28px;
-	height: 17px;
-	float: left;
-	display: inline-block;
-	text-align: center;
+input[type="checkbox"].toggleButton + span {
+	white-space: nowrap;
+	cursor: pointer;
 }
-.moduleToggle .toggleOn, .toggleButton .toggleOn {
-	border: 1px solid #636363;
-	border-right: 0;
-	border-radius: 3px 0 0 3px;
+input[type="checkbox"].toggleButton:disabled + span {
+	opacity: 0.3;
+	cursor: default;
 }
-.moduleToggle .toggleOff, .toggleButton .toggleOff {
-	border: 1px solid #636363;
-	border-left: 0;
-	border-radius: 0 3px 3px 0;
-}
-.moduleToggle:not(.enabled) .toggleOn, .toggleButton:not(.enabled) .toggleOn {
+input[type="checkbox"].toggleButton + span::before,
+input[type="checkbox"].toggleButton + span::after {
 	background-color: #ddd;
 	color: #636363;
+	border: 1px solid #636363;
+	border-radius: 3px;
+	padding: 1px 0;
+	width: 28px;
+	height: 18px;
+	display: inline-block;
+	text-align: center;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 11px;
+	line-height: 17px;
 }
-.moduleToggle:not(.enabled) .toggleOff, .toggleButton:not(.enabled) .toggleOff {
+input[type="checkbox"].toggleButton:indeterminate + span::before,
+input[type="checkbox"].toggleButton:indeterminate + span::after {
+	background-image: repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(0, 0, 0, 0.3) 5px, rgba(0, 0, 0, 0.3) 10px);
+}
+input[type="checkbox"].toggleButton + span::before {
+	content: attr(data-on);
+	border-right-width: 0;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+input[type="checkbox"].toggleButton + span::after {
+	content: attr(data-off);
+	border-left-width: 0;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+input[type="checkbox"].toggleButton:checked + span::before {
+	background-color: #107ac4;
+	color: #fff;
+	font-weight: bolder;
+}
+input[type="checkbox"].toggleButton:not(:checked) + span::after {
 	background-color: #d02020;
 	color: #fff;
 	font-weight: bolder;
 }
-.moduleToggle.enabled .toggleOn, .toggleButton.enabled .toggleOn {
-	background-color: #107ac4 ;
-	color: #fff;
-	font-weight: bolder;
+input[type="checkbox"].toggleButton + span + span {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	pointer-events: none;
 }
-.moduleToggle.enabled .toggleOff, .toggleButton.enabled .toggleOff {
-	background-color: #ddd;
-	color: #636363;
-}
-
-.moduleToggle, .toggleButton {
-	position: relative;
-}
-.moduleToggle::before, .toggleButton::before {
-	content: ' ';
+input[type="checkbox"].toggleButton:not(:indeterminate) + span + span::before {
+	content: '';
 	position: absolute;
 	top: 50%;
-	margin-top: -5px;
+	margin-top: -2px;
 	border: 3px white solid;
 	border-top-color: transparent;
 	border-bottom-color: transparent;
 	border-radius: 5px;
 	opacity: 0.3;
 }
-
-.moduleToggle::before, .toggleButton::before {
-	border-left-width: 0;
-	border-right-width: 5px;
-	left: auto;
-	right: 3px;
-}
-.moduleToggle.enabled::before, .toggleButton.enabled::before {
+input[type="checkbox"].toggleButton:checked + span + span::before {
 	border-left-width: 5px;
 	border-right-width: 0;
 	left: 1px;
 	right: auto;
+}
+input[type="checkbox"].toggleButton:not(:checked) + span + span::before {
+	border-left-width: 0;
+	border-right-width: 5px;
+	left: auto;
+	right: 1px;
 }
 .optionContainer {
 	position: relative;
