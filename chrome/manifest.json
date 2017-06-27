@@ -67,7 +67,7 @@
 		"storage",
 		"unlimitedStorage",
 		"webRequest",
-
+		"https://v.redd.it/*",
 		"http://redditenhancementsuite.com/",
 		"http://reddit.com/*",
 		"https://reddit.com/*",
