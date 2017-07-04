@@ -58,6 +58,7 @@
     ]
   },
   "dependencies": {
+    "dashjs": "2.5.0",
     "dom4": "1.8.3",
     "element-resize-detector": "1.1.12",
     "escape-string-regexp": "1.0.5",
